@@ -1,0 +1,102 @@
+:root { 
+    --main: #efefef;
+    --accent: linear-gradient(90deg, rgba(226,65,9,1) 0%, rgba(238,153,45,1) 59%);
+    --xl: 8vw; /* Taille responsive pour le h1 */
+    --lg: 2vw; /* Taille responsive pour le h2 */
+}
+
+body {
+    margin: 0;
+    font-family: var(--main);
+}
+
+.header {
+    background: var(--accent);
+    padding: 20px;
+    height: 85vh;
+    border-bottom-left-radius: 25%;
+    border-bottom-right-radius: 25%;
+    display: flex;
+    align-items: center; /* Centre le contenu verticalement */
+    justify-content: center; /* Centre horizontalement tout le contenu de l'en-tête */
+    position: relative; /* Pour le positionnement absolu de l'image */
+    overflow: hidden; /* Cache les parties animées qui dépassent */
+}
+
+.header-container {
+    display: flex;
+    align-items: center; /* Centre verticalement tout le contenu */
+    justify-content: center; /* Centre horizontalement tout le contenu */
+    width: 100%;
+    height: 100%;
+    position: relative; /* Permet à l'image en absolute d'être positionnée correctement */
+}
+
+.header-content {
+    text-align: center; /* Centre le texte horizontalement */
+    z-index: 1; /* Assure que le texte est au-dessus de l'image */
+    display: flex;
+    flex-direction: column; /* Aligne le texte verticalement */
+    align-items: center; /* Centre le texte horizontalement */
+    opacity: 0; /* Rend le texte invisible avant l'animation */
+    transform: translateX(100%); /* Positionne le texte à droite avant l'animation */
+    animation: slideInText 1s forwards; /* Anime le texte */
+}
+
+.header h1 {
+    margin: 0;
+    color: white;
+    font-family: 'Painting With Chocolate';
+    font-weight: normal;
+    font-style: normal;
+    font-size: var(--xl); /* Taille responsive */
+}
+
+.header h2 {
+    margin: 10px 0 0; /* Marge au-dessus pour espacer du h1 */
+    color: white;
+    font-weight: normal;
+    font-style: normal;
+    font-size: var(--lg); /* Taille responsive pour le h2 */
+}
+
+.header-image {
+    display: none; /* Masque l'image par défaut */
+    position: absolute;
+    left: -100%; /* Positionne l'image hors de l'écran à gauche avant l'animation */
+    top: 50%;
+    transform: translateY(-50%); /* Centre verticalement l'image */
+    z-index: 0; /* Assure que l'image reste derrière le texte */
+    height: 100%; /* Ajuste la hauteur de l'image pour qu'elle prenne toute la hauteur du header */
+    animation: slideInImage 1s forwards; /* Anime l'image */
+}
+
+/* Animation du texte */
+@keyframes slideInText {
+    from {
+        transform: translateX(100%); /* Commence à droite de l'écran */
+        opacity: 0; /* Invisible au début */
+    }
+    to {
+        transform: translateX(0); /* Se déplace à sa position finale */
+        opacity: 1; /* Devenu visible */
+    }
+}
+
+/* Animation de l'image */
+@keyframes slideInImage {
+    from {
+        left: -100%; /* Commence hors de l'écran à gauche */
+    }
+    to {
+        left: 20px; /* Position finale de l'image */
+    }
+}
+
+/* Styles pour les tablettes et plus grands */
+@media (min-width: 768px) {
+    .header-image {
+        display: block; /* Affiche l'image */
+    }
+}
+
