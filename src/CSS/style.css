@@ -1,21 +1,28 @@
 :root { 
     --main: #efefef;
     --accent: linear-gradient(90deg, rgba(226,65,9,1) 0%, rgba(238,153,45,1) 59%);
-    --xl: 8vw; /* Taille responsive pour le h1 */
-    --lg: 20px; /* Taille responsive pour le h2 */
+    --xl: 80px; 
+    --lg: 30px;
+    --l: 20px;
     --Title-color: #e24109;
+    --T2-color: #ee992d;
     --Tfont: 'Painting With Chocolate';
 }
 
 body {
     margin: 0;
-    font-family: var(--main);
+    background-color: var(--main);
 }
 
+h1 {font-size: var(--xl);
+color: var(--Title-color);}
 
 h2 {font-size: var(--lg);
-color: var(--Title-color);
+color: var(--T2-color);
 font-family: var(--Tfont);}
+
+h3 {font-size: var(--l);
+color: var(--T2-color);}
 
 /* Style global pour les boutons */
 button {
@@ -87,7 +94,7 @@ button a:hover {
     font-family: var(--Tfont);
     font-weight: normal;
     font-style: normal;
-    font-size: var(--xl); /* Taille responsive */
+    font-size: var(--xl); 
 }
 
 .header h2 {
@@ -164,7 +171,7 @@ button a:hover {
 }
 
 .topnav a.active {
-  background-color: #ee992d;
+  background-color: var(--T2-color);
   color: white;
 }
 
@@ -177,7 +184,7 @@ button a:hover {
   .topnav a.icon {
     float: right;
     display: block;
-    background: #e24109;
+    background: var(--Title-color);
   }
 }
 
@@ -187,7 +194,7 @@ button a:hover {
     position: absolute;
     right: 0;
     top: 0;
-    background: #e24109;
+    background: var(--Title-color);
   }
   .topnav.responsive a {
     float: none;
@@ -202,7 +209,7 @@ button a:hover {
     align-items: center;
     justify-content: center;
     padding: 50px 20px;
-    background-color: #f9f9f9;
+    background-color: var(--main);
   }
   
   .container {
@@ -210,7 +217,7 @@ button a:hover {
     flex-wrap: wrap;
     max-width: 1200px;
     width: 100%;
-    gap: 5; /* Réduit l'espace entre les éléments */
+    gap: 5; 
     opacity: 0; /* Masqué par défaut */
     transform: translateY(50px); /* Position initiale pour animation */
     transition: opacity 0.6s ease, transform 0.6s ease;
@@ -224,15 +231,16 @@ button a:hover {
   .image {
     flex: 1 1 300px;
     max-width: 300px;
-    border-radius: 50px;
-    object-fit: cover; /* Assure que l'image remplit bien son espace sans déformation */
-    filter: grayscale(100%); /* Applique un filtre noir et blanc par défaut */
-    transition: filter 0.3s ease; /* Transition douce lors du passage en couleur */
+    border-radius: 15px;
+    object-fit: cover; 
+    filter: grayscale(100%); 
+    transition: filter 0.3s ease; 
     margin-right: 25px;
+    object-fit: cover;
   }
   
   .image:hover {
-    filter: grayscale(0%); /* Retire le filtre pour revenir à la couleur au hover */
+    filter: grayscale(0%); 
   }
   .text-content {
     flex: 2 1 500px;
@@ -246,6 +254,7 @@ button a:hover {
     max-width: 500px;
     word-wrap: break-word; 
     margin: 0;
+    margin-bottom: 15px;
   }
   
   /* Responsive adjustments */
@@ -253,7 +262,7 @@ button a:hover {
     .container {
       flex-direction: column;
       text-align: center;
-      gap: 0; /* Pas d'espace entre les éléments */
+      gap: 0; 
     }
   
     .image {
@@ -262,7 +271,7 @@ button a:hover {
   
     .text-content {
       max-width: 100%;
-      padding-left: 0; /* Aucun padding gauche */
+      padding-left: 0; 
     }
   }
 
@@ -272,32 +281,34 @@ button a:hover {
   flex-direction: column;
   align-items: center;
   padding: 50px 20px;
-  background-color: #f9f9f9;
+  background-color: var(--main);
 }
 
 .gallery-container {
   display: flex;
   gap: 20px;
   width: 100%;
-  overflow: hidden; /* No scrollbar at the bottom */
+  overflow: hidden;
+  background: var(--accent);
+  padding: 20px;
+  margin-bottom: 15px;
 }
 
 .gallery-image {
-  width: 500px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   object-fit: cover;
   border-radius: 15px;
   transition: transform 0.3s ease;
   margin-bottom: 20px;
+  object-fit: cover;
 }
 
 .gallery-image:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
+  transform: scale(1.05); 
 }
 
 
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .gallery-container {
     flex-direction: row;
@@ -310,3 +321,201 @@ button a:hover {
     margin-bottom: 20px;
   }
 }
+
+.section-about {
+  padding: 50px 20px;
+  background-color: var(--main);
+  text-align: center;
+}
+
+/* Container for the About Section */
+.container-about {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  opacity: 0; 
+  transform: translateY(50px); /* Initial position for animation */
+  transition: opacity 0.6s ease, transform 0.6s ease; /* Smooth animation */
+}
+
+.container-about.active {
+  opacity: 1;
+  transform: translateY(0); /* Reset position when in view */
+}
+
+/* Individual About Item */
+.about-item {
+  flex: 1 1 250px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 15px 0;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-item:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+/* Image Styling */
+.about-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #eee;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Content */
+.about-text {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 300px;
+  color: #333;
+}
+
+.about-text h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #007bff; /* Accent color */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container-about {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .about-item {
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .about-image {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+
+/* Contact Section */
+.contact-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  overflow-x: hidden; /* Empêcher le scroll horizontal */
+}
+
+.container-contact {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 0 20px; /* Padding pour éviter le collé aux bords */
+  box-sizing: border-box;
+}
+
+.form-content {
+  flex: 1 1 50%; /* Formulaire prend la moitié de l'espace */
+  padding: 30px; /* Plus d'espace interne */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+  margin-right: 10px;
+  box-sizing: border-box;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacement plus important entre les champs */
+}
+
+.contact-form label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 15px; /* Plus d'espace dans les champs */
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+.contact-form button {
+  padding: 15px;
+  font-size: 16px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+/* Contact Image */
+.contact-image {
+  flex: 1 1 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-image .image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 50px 15px; /* Réduction du padding latéral pour les petits écrans */
+  }
+
+  .container-contact {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 15px; /* Espacement égal des deux côtés */
+  }
+
+  .contact-image {
+    display: none; /* Cacher l'image sur mobile */
+  }
+
+  .form-content {
+    width: 100%; /* Largeur complète pour le formulaire */
+    max-width: 600px; /* Largeur maximale du formulaire */
+    padding: 30px;
+    margin: 0 auto; /* Centrer le formulaire */
+    box-sizing: border-box;
+  }
+
+  .contact-form button {
+    width: 100%; /* Bouton pleine largeur sur mobile */
+  }
+}
+
