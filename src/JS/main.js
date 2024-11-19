@@ -69,3 +69,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const historySection = document.querySelector('.history-section .container');
+
+  if (historySection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          historySection.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(historySection);
+  }
+});

@@ -19,8 +19,8 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: cfapm
-            MYSQL_USER: cfapm
-            MYSQL_PASSWORD: cfamp_password
+            MYSQL_USER: test
+            MYSQL_PASSWORD: test
         volumes:
             - "./data:/docker-entrypoint-initdb.d"
         ports:
