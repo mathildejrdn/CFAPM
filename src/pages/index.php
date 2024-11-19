@@ -22,7 +22,7 @@ else{
     <a href="#news">Expositions</a>
     <a href="#contact">Contact</a>
     <a href="#about">A propos</a>
-    <a href="#about">Connexion</a>
+    <a href="login.php">Connexion</a>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
       <i class="fa fa-bars"></i>
     </a>
@@ -67,25 +67,25 @@ else{
       <section class="section-about"><h1>Notre équipe</h1>
         <div class="container-about">
             <div class="about-item">
-                <img src="./img/chat1.jpg" alt="Image 2 description" class="about-image">
+                <img src="../img/chat1.jpg" alt="Image 2 description" class="about-image">
                 <h3>Mme Nicole Chaniel & nom du chat</h3><br>
                 <p class="about-text">
                 Présidente du club</p>
             </div>
             <div class="about-item">
-                <img src="./img/chat2.jpg" alt="Image 3 description" class="about-image">
+                <img src="../img/chat2.jpg" alt="Image 3 description" class="about-image">
                 <h3>Mme Karine Riahi & nom du chat</h3><br>
                 <p class="about-text">
                     Secrétaire générale du club</p>
             </div>
             <div class="about-item">
-                <img src="./img/chat3.jpg" alt="Image 1 description" class="about-image">
+                <img src="../img/chat3.jpg" alt="Image 1 description" class="about-image">
                 <h3>Mr Jean Tartenpion & nom du chat</h3><br>
                 <p class="about-text">
                     rôle</p>
             </div>
             <div class="about-item">
-                <img src="./img/mitaine.jpg" alt="Image 3 description" class="about-image">
+                <img src="../img/mitaine.jpg" alt="Image 3 description" class="about-image">
                 <h3>Mlle Mathilde Jourden & Mitaine</h3><br>
                 <p class="about-text">
                     Développeuse web et assesseuse occasionnelle</p></p>
@@ -150,7 +150,7 @@ else{
     </section>
     <?php
       
-    include 'includes/footer.php';?>
+    include 'footer.php';?>
     
 
 
