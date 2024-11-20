@@ -23,14 +23,24 @@ if (isset($_SESSION['message'])) {
 <body>
 <div class="topnav" id="myTopnav">
     <a href="#home" class="active">Accueil</a>
-    <a href="#news">Expositions</a>
     <a href="#contact">Contact</a>
-    <a href="#about">A propos</a>
     <div class="user-info">
         <?php
         if (isset($_SESSION["user"])) {
+            // Affichage du message de bienvenue avec le nom et prénom de l'utilisateur
             echo "<span>Bienvenue, " . htmlspecialchars($_SESSION["user"]["name"]) . " " . htmlspecialchars($_SESSION["user"]["surname"]) . "</span>";
-            echo ' | <a href="backoffice.php">Back Office</a> <a href="logout.php">Se déconnecter</a>';
+            
+            // Ajouter le lien pour modifier le profil
+            echo ' | <a href="profile.php">Modifier mon profil</a>';
+            //Ajout d'un lien de gestion des chats
+            echo ' | <a href="cats.php">Gestion des chats</a>';
+            // Vérifier si l'utilisateur a le rôle 'admin' et afficher le lien vers le Back Office
+            if (isset($_SESSION["user"]["role"]) && $_SESSION["user"]["role"] === 'admin') {
+                echo ' | <a href="backoffice.php">Back Office</a>';
+            }
+
+            // Afficher le lien de déconnexion
+            echo ' | <a href="logout.php">Se déconnecter</a>';
         } else {
             echo '<a href="login.php">Connexion</a> | <a href="inscription.php">Inscription</a>';
         }
@@ -40,8 +50,6 @@ if (isset($_SESSION['message'])) {
         <i class="fa fa-bars"></i>
     </a>
 </div>
-</body>
-</html>
 
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
       <i class="fa fa-bars"></i>

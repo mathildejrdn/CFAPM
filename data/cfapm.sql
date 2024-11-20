@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : mar. 19 nov. 2024 à 14:28
+-- Généré le : mer. 20 nov. 2024 à 12:20
 -- Version du serveur : 8.0.37
 -- Version de PHP : 8.2.8
 
@@ -28,24 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
+  `user_id` int NOT NULL,
   `role` varchar(255) NOT NULL,
   `member` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- --------------------------------------------------------
-
 --
--- Structure de la table `Admission`
+-- Déchargement des données de la table `admin`
 --
 
-CREATE TABLE `Admission` (
-  `id_form` int NOT NULL,
-  `date` date NOT NULL,
-  `payment` tinyint(1) NOT NULL,
-  `cat_id` int NOT NULL,
-  `comments` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+INSERT INTO `admin` (`user_id`, `role`, `member`, `email`) VALUES
+(10, 'admin', '0', 'admin@cfbda.fr');
 
 -- --------------------------------------------------------
 
@@ -66,11 +60,6 @@ CREATE TABLE `Cat` (
   `breeder` varchar(255) NOT NULL,
   `father` varchar(255) NOT NULL,
   `mother` varchar(255) NOT NULL,
-  `neutered` varchar(255) NOT NULL,
-  `class` varchar(255) NOT NULL,
-  `kitten` varchar(255) NOT NULL,
-  `honor` varchar(255) NOT NULL,
-  `house_cat` varchar(255) NOT NULL,
   `user_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -95,12 +84,8 @@ CREATE TABLE `User` (
 --
 
 INSERT INTO `User` (`user_id`, `email`, `name`, `surname`, `phone`, `adress`, `password`) VALUES
-(1, 'mathilde.jourden@gmail.com', 'jourden', 'mathilde', 667703832, 'les magnolias', 'test'),
-(2, 'admin@cfbda.fr', 'admin', 'admin', 667703832, 'les magnolias', 'test'),
-(3, 'greory@cfbda.fr', 'greg', 'oriz', 667703832, 'les magnolias', 'test'),
-(4, 'greory@cfbda.fr', 'greg', 'ory', 667703832, 'les magnolias', 'test'),
-(5, 'greory@cfbda.fr', 'khhk', 'hkhk', 667703832, 'ygiygi', 'test'),
-(6, 'greory@cfbda.fr', 'zeze', 'zzzz', 667703832, 'zezeze', 'test');
+(10, 'admin@cfbda.fr', 'admin', 'admin', 667703832, '10 les magnolias 58300 decize', '$argon2id$v=19$m=65536,t=4,p=1$ZjBIZlpSanIucno2d0tWdg$afrlBYXPk5qkMaI70kb/EnOrvjdw1oXUz/bk4psPb+U'),
+(11, 'mp@cfbda.fr', 'pourradier', 'mégane', 667703832, 'rue de la californie', '$argon2id$v=19$m=65536,t=4,p=1$enQ0VW1xTW5scGZ0ZjRpZw$8aWADxF3MFSkVXJ2tFVgTpdc8MLmlWRPJ6Ic4j5dmjg');
 
 --
 -- Index pour les tables déchargées
@@ -132,7 +117,7 @@ ALTER TABLE `Cat`
 -- AUTO_INCREMENT pour la table `User`
 --
 ALTER TABLE `User`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
