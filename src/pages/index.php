@@ -1,12 +1,16 @@
-<?php session_start(); 
-if (isset($_SESSION['message'])){
+<?php 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+} 
+
+if (isset($_SESSION['message'])) {
     echo $_SESSION['message'];
-    $_SESSION['message'] ="<div id='alert_message'></div>";        
+    $_SESSION['message'] = "<div id='alert_message'></div>";        
+} else {
+    $_SESSION['message'] = "<div id='alert_message'></div>";
 }
-else{
-    $_SESSION['message'] ="<div id='alert_message'></div>";
-}
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,13 +20,29 @@ else{
     <link rel="preload" href="PaintingWithChocolate.woff2" as="font" type="font/woff2" crossorigin>
     <script src="../JS/main.js" defer></script>
 </head>
-<body><div class="topnav" id="myTopnav">
-    <a href="#home" class="active">Accueil
-    </a>
+<body>
+<div class="topnav" id="myTopnav">
+    <a href="#home" class="active">Accueil</a>
     <a href="#news">Expositions</a>
     <a href="#contact">Contact</a>
     <a href="#about">A propos</a>
-    <a href="login.php">Connexion</a>
+    <div class="user-info">
+        <?php
+        if (isset($_SESSION["user"])) {
+            echo "<span>Bienvenue, " . htmlspecialchars($_SESSION["user"]["name"]) . " " . htmlspecialchars($_SESSION["user"]["surname"]) . "</span>";
+            echo ' | <a href="backoffice.php">Back Office</a> <a href="logout.php">Se déconnecter</a>';
+        } else {
+            echo '<a href="login.php">Connexion</a> | <a href="inscription.php">Inscription</a>';
+        }
+        ?>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+</body>
+</html>
+
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
       <i class="fa fa-bars"></i>
     </a>

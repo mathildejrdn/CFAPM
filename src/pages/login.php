@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once("open_bdd.php");
 
 // Fonction pour valider les emails
 function ValidateEmail($email)
@@ -19,12 +20,13 @@ if (!empty($_POST)) {
         if (!ValidateEmail($_POST["email"])) {
             // $_SESSION['message'] = "Adresse email invalide.";
             header("Location: login.php");
+            exit();
         }
 
         require_once("open_bdd.php");
 
         // Préparation de la requête SQL
-        $sql = "SELECT * FROM User WHERE email = :email";
+        $sql = "SELECT u.*, a.role FROM User u LEFT JOIN admin a ON u.user_id = a.user_id WHERE u.email = :email";
         $query = $db->prepare($sql);
         $query->bindValue(':email', $_POST["email"]);
         $query->execute();
@@ -33,11 +35,7 @@ if (!empty($_POST)) {
         $user = $query->fetch(PDO::FETCH_ASSOC);
 
         // Validation de l'utilisateur et du mot de passe
-        if (!$user) {
-            header("Location: login.php");
-        }
-
-        if (!password_verify($_POST["password"], $user["password"])) {
+        if (!$user || !password_verify($_POST["password"], $user["password"])) {
             header("Location: login.php");
             exit();
         }
@@ -49,7 +47,8 @@ if (!empty($_POST)) {
             "surname" => $user["surname"],
             "email" => $user["email"],
             "phone" => $user["phone"],
-            "adress" => $user["adress"]
+            "adress" => $user["adress"],
+            "role" => $user["role"] // Le rôle est récupéré ici
         ];
 
         // Redirection après connexion
@@ -156,3 +155,4 @@ if (!empty($_POST)) {
 </body>
 
 </html>
+
