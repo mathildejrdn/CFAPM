@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : lun. 25 nov. 2024 à 12:12
+-- Généré le : lun. 25 nov. 2024 à 14:34
 -- Version du serveur : 8.0.37
 -- Version de PHP : 8.2.8
 
@@ -77,6 +77,19 @@ INSERT INTO `Cat` (`cat_id`, `name`, `birthdate`, `sex`, `breed`, `color`, `eyes
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `Cat_registration`
+--
+
+CREATE TABLE `Cat_registration` (
+  `cat_registration_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `cat_id` int NOT NULL,
+  `show_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Cat_show`
 --
 
@@ -94,7 +107,11 @@ CREATE TABLE `Cat_show` (
 --
 
 INSERT INTO `Cat_show` (`show_id`, `date_show`, `show_adress`, `number_show`, `show_city`, `pdf_path`) VALUES
-(1, '2024-11-15', 'azaeazeazc', '5646523032', '', '');
+(4, '2024-11-01', 'route', '111', 'nice', '/var/www/html//pdf_exports/expo_1732539576.pdf'),
+(5, '2024-12-02', 'route', '3', 'nice', ''),
+(6, '2024-12-02', 'route', '3', 'nice', ''),
+(7, '2024-12-02', 'route', '3', 'nice', ''),
+(8, '2024-12-02', 'route', '3', 'nice', '');
 
 -- --------------------------------------------------------
 
@@ -109,6 +126,28 @@ CREATE TABLE `Registrations` (
   `price` decimal(10,0) NOT NULL,
   `pdf_path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `Registrations`
+--
+
+INSERT INTO `Registrations` (`user_id`, `show_id`, `id`, `price`, `pdf_path`) VALUES
+(10, 4, 1, 4, '/var/www/html//pdf_exports/inscription_1732539615.pdf'),
+(10, 4, 2, 4, '/var/www/html//pdf_exports/inscription_1732539731.pdf'),
+(10, 4, 3, 4, '/var/www/html//pdf_exports/inscription_1732539766.pdf'),
+(10, 8, 4, 1, 'expositions/8_bulletin.pdf'),
+(10, 8, 5, 1, 'uploads/8_bulletin.pdf'),
+(10, 8, 6, 1, 'uploads/8_bulletin.pdf'),
+(10, 8, 7, 1, 'uploads/8_bulletin.pdf'),
+(10, 8, 8, 1, 'uploads/8_bulletin.pdf'),
+(10, 5, 9, 1, 'uploads/5_bulletin.pdf'),
+(10, 5, 10, 1, 'uploads/5_bulletin.pdf'),
+(10, 8, 11, 1, 'uploads/8_bulletin.pdf'),
+(10, 8, 12, 1, 'uploads/8_bulletin.pdf'),
+(10, 7, 13, 1, 'uploads/7_bulletin.pdf'),
+(10, 4, 14, 1, 'uploads/4_bulletin.pdf'),
+(10, 8, 15, 1, 'uploads/8_bulletin.pdf'),
+(10, 8, 16, 1, 'uploads/8_bulletin.pdf');
 
 -- --------------------------------------------------------
 
@@ -145,6 +184,12 @@ ALTER TABLE `Cat`
   ADD PRIMARY KEY (`cat_id`);
 
 --
+-- Index pour la table `Cat_registration`
+--
+ALTER TABLE `Cat_registration`
+  ADD PRIMARY KEY (`cat_registration_id`);
+
+--
 -- Index pour la table `Cat_show`
 --
 ALTER TABLE `Cat_show`
@@ -173,16 +218,22 @@ ALTER TABLE `Cat`
   MODIFY `cat_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT pour la table `Cat_registration`
+--
+ALTER TABLE `Cat_registration`
+  MODIFY `cat_registration_id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `Cat_show`
 --
 ALTER TABLE `Cat_show`
-  MODIFY `show_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `show_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `Registrations`
 --
 ALTER TABLE `Registrations`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `User`

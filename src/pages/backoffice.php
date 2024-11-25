@@ -28,6 +28,15 @@ $sql_show = "SELECT * FROM `Cat_show`";  // Utilisation du bon nom de table
 $query_show = $db->prepare($sql_show);
 $query_show->execute();
 $shows = $query_show->fetchAll(PDO::FETCH_ASSOC);
+
+// Récupérer les inscriptions des utilisateurs aux expositions
+$sql_inscriptions = "SELECT r.user_id, u.name, u.surname, c.show_city, r.price
+                     FROM Registrations r
+                     JOIN User u ON r.user_id = u.user_id
+                     JOIN Cat_show c ON r.show_id = c.show_id";
+$query_inscriptions = $db->prepare($sql_inscriptions);
+$query_inscriptions->execute();
+$inscriptions = $query_inscriptions->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -127,12 +136,31 @@ $shows = $query_show->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <h3>Suivi des inscriptions</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Ville de l'exposition</th>
+                <th>Prix payé</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($inscriptions as $inscription): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($inscription['name']); ?></td>
+                    <td><?php echo htmlspecialchars($inscription['surname']); ?></td>
+                    <td><?php echo htmlspecialchars($inscription['show_city']); ?></td>
+                    <td><?php echo htmlspecialchars($inscription['price']); ?>€</td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
 <?php else: ?>
     <p>Accès interdit. Vous devez être administrateur pour voir cette section.</p>
 <?php endif; ?>
-
-
-
-
 </body>
 </html>
