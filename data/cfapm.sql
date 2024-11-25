@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db
--- Généré le : mer. 20 nov. 2024 à 12:20
+-- Généré le : lun. 25 nov. 2024 à 12:12
 -- Version du serveur : 8.0.37
 -- Version de PHP : 8.2.8
 
@@ -63,6 +63,53 @@ CREATE TABLE `Cat` (
   `user_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Déchargement des données de la table `Cat`
+--
+
+INSERT INTO `Cat` (`cat_id`, `name`, `birthdate`, `sex`, `breed`, `color`, `eyes`, `pedigree`, `chip`, `breeder`, `father`, `mother`, `user_id`) VALUES
+(8, 'Éclipse', '2024-11-16', 'femelle', 'persan', 'bleu taby', 'jaunes', 'dd', 151204, 'mme dupont', 'colibri', 'prout', 11),
+(9, 'mitaine', '2024-11-26', 'male', 'sheitan', 'chat', 'verts', '1651654132', 46545120, 'né dans un moulin ', 'inconnu', 'je sais pas', 10),
+(10, 'mistouline', '2024-10-29', 'femelle', 'crotte', 'chat', 'verts', '1651654132', 151204, 'trouvée dans les escaliers', 'inconnu', 'inconnue ', 10),
+(11, 'muscade', '2024-12-03', 'male', 'braincell', 'roux et blanc', 'bleus', '1651654132', 151204, 'trouvé dans un pot de fleurs', 'inconnu', 'inconnue ', 10),
+(12, 'muad\'dib', '2024-11-03', 'male', 'gros chat', 'roux et blanc', 'jaunes', '1651654132', 151204, 'ramené par muscade', 'inconnu', 'inconnue ', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Cat_show`
+--
+
+CREATE TABLE `Cat_show` (
+  `show_id` int NOT NULL,
+  `date_show` date NOT NULL,
+  `show_adress` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `number_show` varchar(255) NOT NULL,
+  `show_city` varchar(255) NOT NULL,
+  `pdf_path` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `Cat_show`
+--
+
+INSERT INTO `Cat_show` (`show_id`, `date_show`, `show_adress`, `number_show`, `show_city`, `pdf_path`) VALUES
+(1, '2024-11-15', 'azaeazeazc', '5646523032', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Registrations`
+--
+
+CREATE TABLE `Registrations` (
+  `user_id` int NOT NULL,
+  `show_id` int NOT NULL,
+  `id` int NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  `pdf_path` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +145,18 @@ ALTER TABLE `Cat`
   ADD PRIMARY KEY (`cat_id`);
 
 --
+-- Index pour la table `Cat_show`
+--
+ALTER TABLE `Cat_show`
+  ADD PRIMARY KEY (`show_id`);
+
+--
+-- Index pour la table `Registrations`
+--
+ALTER TABLE `Registrations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `User`
 --
 ALTER TABLE `User`
@@ -111,7 +170,19 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT pour la table `Cat`
 --
 ALTER TABLE `Cat`
-  MODIFY `cat_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `cat_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT pour la table `Cat_show`
+--
+ALTER TABLE `Cat_show`
+  MODIFY `show_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `Registrations`
+--
+ALTER TABLE `Registrations`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `User`
