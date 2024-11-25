@@ -39,7 +39,7 @@ if (!$show) {
 }
 
 // Récupérer les informations de l'utilisateur inscrit
-$sql_user_info = "SELECT u.name, u.email, r.price, r.pdf_path 
+$sql_user_info = "SELECT u.name, u.surname, u.email, u.phone, u.adress, r.price, r.pdf_path 
                   FROM `Registrations` r
                   JOIN `User` u ON u.user_id = r.user_id
                   WHERE r.show_id = :show_id";
@@ -66,8 +66,10 @@ $pdf->Cell(0, 10, 'Ville: ' . $show['show_city'], 0, 1, 'C');
 
 // Ajouter les informations de l'utilisateur
 $pdf->Ln(10); // Saut de ligne
-$pdf->Cell(0, 10, 'Nom de l\'utilisateur: ' . $user_info['name'], 0, 1, 'L');
+$pdf->Cell(0, 10, 'Nom de l\'utilisateur: ' . $user_info['surname'] . ' ' . $user_info['name'], 0, 1, 'L');
 $pdf->Cell(0, 10, 'Email: ' . $user_info['email'], 0, 1, 'L');
+$pdf->Cell(0, 10, 'Adresse: ' . $user_info['adress'], 0, 1, 'L');
+$pdf->Cell(0, 10, 'N° de téléphone: ' . $user_info['phone'], 0, 1, 'L');
 $pdf->Cell(0, 10, 'Prix payé: ' . $user_info['price'] . '€', 0, 1, 'L');
 
 
