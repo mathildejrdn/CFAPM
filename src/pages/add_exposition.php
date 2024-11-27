@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $number_show = $_POST['number_show'];
 
     // Valeur par défaut pour pdf_path (vide au départ)
-    $pdf_path = ''; // Vous pouvez mettre NULL si vous préférez
+    $pdf_path = ''; 
 
     // Insérer l'exposition dans la base de données
     $sql = "INSERT INTO `Cat_show` (date_show, show_adress, show_city, number_show, pdf_path) VALUES (?, ?, ?, ?, ?)";

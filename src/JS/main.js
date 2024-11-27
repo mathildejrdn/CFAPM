@@ -1,86 +1,65 @@
-function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
+// Toggle navigation menu on mobile view
+function toggleNavMenu() {
+  const navMenu = document.getElementById("myTopnav");
+  
+  if (navMenu.classList.contains("topnav")) {
+    navMenu.classList.add("responsive");
   } else {
-    x.className = "topnav";
+    navMenu.classList.remove("responsive");
   }
 }
 
-// Ajout pour l'animation de la section "news-section"
-document.addEventListener('DOMContentLoaded', () => {
-  const newsSection = document.querySelector('.news-section .container');
-
-  if (newsSection) {
+// Handle intersection observer for sections that should animate when in view
+function observeSectionAnimation(sectionClass) {
+  const section = document.querySelector(sectionClass);
+  
+  if (section) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          newsSection.classList.add('active');
+          section.classList.add('active');
         }
       });
     }, { threshold: 0.1 });
 
-    observer.observe(newsSection);
-  }
-});
-
-// JavaScript for smooth continuous scrolling
-const galleryContainer = document.querySelector('.gallery-container');
-
-// Duplicate the first image and append it to the end for seamless looping
-const firstImage = galleryContainer.querySelector('img');
-const clonedImage = firstImage.cloneNode(true); 
-galleryContainer.appendChild(clonedImage);
-
-// Adjust the scroll speed and behavior
-let scrollSpeed = 1; // You can adjust this value for speed
-
-function scrollGallery() {
-  // Scroll by 'scrollSpeed' value
-  galleryContainer.scrollBy({
-    left: scrollSpeed, 
-    behavior: 'smooth'
-  });
-
-  // Check if the container has scrolled to the last image
-  // When reaching the end, reset the scroll position to the start (without a jump)
-  if (galleryContainer.scrollLeft >= galleryContainer.scrollWidth - galleryContainer.clientWidth) {
-    galleryContainer.scrollLeft = 0; // Reset scroll to the beginning
+    observer.observe(section);
   }
 }
 
-// Continuously scroll every 30ms
-setInterval(scrollGallery, 30);
+// Smooth continuous scrolling for gallery container
+function startContinuousScroll() {
+  const galleryContainer = document.querySelector('.gallery-container');
+  
+  // Duplicate the first image and append it for seamless looping
+  const firstImage = galleryContainer.querySelector('img');
+  const clonedImage = firstImage.cloneNode(true); 
+  galleryContainer.appendChild(clonedImage);
 
+  let scrollSpeed = 1; // Adjust speed as needed
 
-document.addEventListener('DOMContentLoaded', () => {
-  const aboutSection = document.querySelector('.section-about .container-about');
+  function scrollGallery() {
+    galleryContainer.scrollBy({
+      left: scrollSpeed, 
+      behavior: 'smooth'
+    });
 
-  if (aboutSection) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          aboutSection.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    observer.observe(aboutSection);
+    // Reset scroll position when reaching the end of the container
+    if (galleryContainer.scrollLeft >= galleryContainer.scrollWidth - galleryContainer.clientWidth) {
+      galleryContainer.scrollLeft = 0;
+    }
   }
-});
 
+  // Continuously scroll every 30ms
+  setInterval(scrollGallery, 30);
+}
+
+// Initialize all scripts once the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  const historySection = document.querySelector('.history-section .container');
-
-  if (historySection) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          historySection.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    observer.observe(historySection);
-  }
+  // Initialize section animations
+  observeSectionAnimation('.news-section .container');
+  observeSectionAnimation('.section-about .container-about');
+  observeSectionAnimation('.history-section .container');
+  
+  // Start the continuous scrolling of the gallery
+  startContinuousScroll();
 });

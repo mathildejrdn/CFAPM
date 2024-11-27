@@ -8,9 +8,9 @@ if (!isset($_SESSION["user"])) {
     exit();
 }
 
-// Récupérer tous les chats de l'utilisateur
+// Récupérer les chats de l'utilisateur
 $user_id = $_SESSION['user']['user_id'];
-$sql_cats = "SELECT * FROM `Cat` WHERE `user_id` = :user_id"; // Récupérer tous les chats de l'utilisateur
+$sql_cats = "SELECT * FROM `Cat` WHERE `user_id` = :user_id"; // Sélectionner les chats de l'utilisateur
 $query_cats = $db->prepare($sql_cats);
 $query_cats->execute([':user_id' => $user_id]);
 $cats = $query_cats->fetchAll(PDO::FETCH_ASSOC);
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "INSERT INTO `Registrations` (user_id, show_id, price, pdf_path) 
                 VALUES (:user_id, :show_id, :price, :pdf_path)";
         $query = $db->prepare($sql);
-        $query->execute([ 
+        $query->execute([
             ':user_id' => $user_id,
             ':show_id' => $show_id,
             ':price' => $price,
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $sql_cat_registration = "INSERT INTO `Cat_registration` (user_id, cat_id, show_id) 
                                          VALUES (:user_id, :cat_id, :show_id)";
                 $query_cat_registration = $db->prepare($sql_cat_registration);
-                $query_cat_registration->execute([ 
+                $query_cat_registration->execute([
                     ':user_id' => $user_id,
                     ':cat_id' => $cat_id,
                     ':show_id' => $show_id
@@ -80,7 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -111,10 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="cats_container">
         <?php foreach ($cats as $cat): ?>
             <input type="checkbox" name="cats[]" value="<?php echo $cat['cat_id']; ?>">
-            <label>
-                <?php echo $cat['name'] . ' - ' . $cat['breed']; ?> 
-                (Sexe: <?php echo $cat['sex']; ?>, Yeux: <?php echo $cat['eyes']; ?>, Couleur: <?php echo $cat['color']; ?>)
-            </label><br>
+            <label><?php echo $cat['name'] . ' - ' . $cat['breed']; ?></label><br>
         <?php endforeach; ?>
     </div><br>
 

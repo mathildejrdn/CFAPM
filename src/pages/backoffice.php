@@ -29,8 +29,8 @@ $query_show = $db->prepare($sql_show);
 $query_show->execute();
 $shows = $query_show->fetchAll(PDO::FETCH_ASSOC);
 
-// Récupérer les inscriptions des utilisateurs aux expositions
-$sql_inscriptions = "SELECT r.user_id, u.name, u.surname, c.show_city, r.price
+// Récupérer les inscriptions des utilisateurs aux expositions avec le chemin du PDF
+$sql_inscriptions = "SELECT r.user_id, u.name, u.surname, c.show_city, r.price, r.pdf_path
                      FROM Registrations r
                      JOIN User u ON r.user_id = u.user_id
                      JOIN Cat_show c ON r.show_id = c.show_id";
@@ -145,6 +145,7 @@ $inscriptions = $query_inscriptions->fetchAll(PDO::FETCH_ASSOC);
                 <th>Prénom</th>
                 <th>Ville de l'exposition</th>
                 <th>Prix payé</th>
+                <th>PDF d'inscription</th> 
             </tr>
         </thead>
         <tbody>
@@ -154,6 +155,13 @@ $inscriptions = $query_inscriptions->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($inscription['surname']); ?></td>
                     <td><?php echo htmlspecialchars($inscription['show_city']); ?></td>
                     <td><?php echo htmlspecialchars($inscription['price']); ?>€</td>
+                    <td>
+                        <?php if (!empty($inscription['pdf_path'])): ?>
+                            <a href="<?php echo htmlspecialchars($inscription['pdf_path']); ?>" target="_blank">Voir le PDF</a>
+                        <?php else: ?>
+                            <span>Aucun PDF</span>
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

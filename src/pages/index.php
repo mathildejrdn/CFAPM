@@ -23,7 +23,6 @@ if (isset($_SESSION['message'])) {
 <body>
 <div class="topnav" id="myTopnav">
     <a href="#home" class="active">Accueil</a>
-    <a href="#contact">Contact</a>
     <div class="user-info">
         <?php
         if (isset($_SESSION["user"])) {
@@ -31,20 +30,21 @@ if (isset($_SESSION['message'])) {
             echo "<span>Bienvenue, " . htmlspecialchars($_SESSION["user"]["name"]) . " " . htmlspecialchars($_SESSION["user"]["surname"]) . "</span>";
             
             // Ajouter le lien pour modifier le profil
-            echo ' | <a href="profile.php">Modifier mon profil</a>';
+            echo ' <a href="profile.php">Modifier mon profil</a>';
             //Ajout d'un lien de gestion des chats
-            echo ' | <a href="cats.php">Gestion des chats</a>';
+            echo ' <a href="cats.php">Gestion des chats</a>';
             // Vérifier si l'utilisateur a le rôle 'admin' et afficher le lien vers le Back Office
             if (isset($_SESSION["user"]["role"]) && $_SESSION["user"]["role"] === 'admin') {
-                echo ' | <a href="backoffice.php">Back Office</a>';
+                echo ' <a href="backoffice.php">Back Office</a>';
             }
 
             // Afficher le lien de déconnexion
-            echo ' | <a href="logout.php">Se déconnecter</a>';
+            echo ' <a href="logout.php">Se déconnecter</a>';
         } else {
-            echo '<a href="login.php">Connexion</a> | <a href="inscription.php">Inscription</a>';
+            echo '<a href="login.php">Connexion</a> <a href="inscription.php">Inscription</a>';
         }
         ?>
+            <a href="#contact">Contact</a>
     </div>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
@@ -108,9 +108,9 @@ if (isset($_SESSION['message'])) {
             </div>
             <div class="about-item">
                 <img src="../img/chat3.jpg" alt="Image 1 description" class="about-image">
-                <h3>Mr Jean Tartenpion & nom du chat</h3><br>
+                <h3>Mr Michel Pons & nom du chat</h3><br>
                 <p class="about-text">
-                    rôle</p>
+                    Trésorier</p>
             </div>
             <div class="about-item">
                 <img src="../img/mitaine.jpg" alt="Image 3 description" class="about-image">

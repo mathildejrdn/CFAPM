@@ -7,9 +7,9 @@ if (!isset($_SESSION['user'])) {
     exit; // Empêche l'accès à la page si l'utilisateur n'est pas connecté
 }
 
-// Accéder à l'ID de l'utilisateur connecté
-$user_id = $_SESSION['user']['user_id']; // Récupère l'ID de l'utilisateur connecté
-echo "L'utilisateur connecté a l'ID : " . $user_id . "<br>"; // Affichage pour vérification
+// // Accéder à l'ID de l'utilisateur connecté
+// $user_id = $_SESSION['user']['user_id']; // Récupère l'ID de l'utilisateur connecté
+// echo "L'utilisateur connecté a l'ID : " . $user_id . "<br>"; // Affichage pour vérification
 
 // Connexion à la base de données
 require_once 'open_bdd.php'; // Ton fichier de connexion à la base de données

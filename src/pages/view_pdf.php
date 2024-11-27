@@ -16,11 +16,11 @@ if (file_exists($filePath)) {
     exit();
 }
 
-// Vérifier si l'utilisateur est connecté et a le rôle d'admin
-if (!isset($_SESSION["user"]) || !isset($_SESSION["user"]["role"]) || $_SESSION["user"]["role"] !== 'admin') {
-    header("Location: login.php");
-    exit();
-}
+// // Vérifier si l'utilisateur est connecté et a le rôle d'admin
+// if (!isset($_SESSION["user"]) || !isset($_SESSION["user"]["role"]) || $_SESSION["user"]["role"] !== 'admin') {
+//     header("Location: login.php");
+//     exit();
+// }
 
 // Récupérer l'ID de l'exposition depuis l'URL
 $show_id = isset($_GET['id']) ? $_GET['id'] : null;
@@ -103,7 +103,7 @@ foreach ($cats as $cat) {
     $pdf->Cell(0, 10, 'Couleur: ' . $cat['color'], 0, 1, 'L');
     $pdf->Cell(0, 10, 'Date de naissance: ' . $cat['birthdate'], 0, 1, 'L');
     $pdf->Cell(0, 10, 'Pédigrée: ' . $cat['pedigree'], 0, 1, 'L');
-    $pdf->Cell(0, 10, 'Chip: ' . $cat['chip'], 0, 1, 'L');
+    $pdf->Cell(0, 10, 'N° de puce: ' . $cat['chip'], 0, 1, 'L');
     $pdf->Cell(0, 10, 'Éleveur: ' . $cat['breeder'], 0, 1, 'L');
     $pdf->Cell(0, 10, 'Père: ' . $cat['father'], 0, 1, 'L');
     $pdf->Cell(0, 10, 'Mère: ' . $cat['mother'], 0, 1, 'L');
