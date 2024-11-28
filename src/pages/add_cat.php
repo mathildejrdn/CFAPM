@@ -7,8 +7,8 @@ if (!isset($_SESSION['user'])) {
     exit; // Empêche l'accès à la page si l'utilisateur n'est pas connecté
 }
 
-// // Accéder à l'ID de l'utilisateur connecté
-// $user_id = $_SESSION['user']['user_id']; // Récupère l'ID de l'utilisateur connecté
+// Accéder à l'ID de l'utilisateur connecté
+$user_id = $_SESSION['user']['user_id']; // Récupère l'ID de l'utilisateur connecté
 // echo "L'utilisateur connecté a l'ID : " . $user_id . "<br>"; // Affichage pour vérification
 
 // Connexion à la base de données
@@ -39,36 +39,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $father = $_POST['father'];
     $mother = $_POST['mother'];
 
-    // Requête SQL pour insérer le chat dans la table 'Cat'
-    $query = "INSERT INTO Cat (name, birthdate, sex, breed, color, eyes, pedigree, chip, breeder, father, mother, user_id) 
-              VALUES (:name, :birthdate, :sex, :breed, :color, :eyes, :pedigree, :chip, :breeder, :father, :mother, :user_id)";
-    
     try {
-        // Préparer et exécuter la requête
-        $stmt = $db->prepare($query);
-        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-        $stmt->bindValue(':birthdate', $birthdate, PDO::PARAM_STR);
-        $stmt->bindValue(':sex', $sex, PDO::PARAM_STR);
-        $stmt->bindValue(':breed', $breed, PDO::PARAM_STR);
-        $stmt->bindValue(':color', $color, PDO::PARAM_STR);
-        $stmt->bindValue(':eyes', $eyes, PDO::PARAM_STR);
-        $stmt->bindValue(':pedigree', $pedigree, PDO::PARAM_STR);
-        $stmt->bindValue(':chip', $chip, PDO::PARAM_INT);
-        $stmt->bindValue(':breeder', $breeder, PDO::PARAM_STR);
-        $stmt->bindValue(':father', $father, PDO::PARAM_STR);
-        $stmt->bindValue(':mother', $mother, PDO::PARAM_STR);
-        $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT); // Utilisation de l'ID utilisateur
+        // Requête SQL pour insérer un chat
+        $insertCatQuery = "INSERT INTO Cat (name, birthdate, sex, breed, color, eyes, pedigree, chip, breeder, father, mother, user_id)
+                           VALUES (:name, :birthdate, :sex, :breed, :color, :eyes, :pedigree, :chip, :breeder, :father, :mother, :user_id)";
+        
+        $addCat = $db->prepare($insertCatQuery);
+        
+        // Associe les valeurs aux paramètres de la requête préparée
+        $addCat->bindValue(':name', $name, PDO::PARAM_STR);
+        $addCat->bindValue(':birthdate', $birthdate, PDO::PARAM_STR);
+        $addCat->bindValue(':sex', $sex, PDO::PARAM_STR);
+        $addCat->bindValue(':breed', $breed, PDO::PARAM_STR);
+        $addCat->bindValue(':color', $color, PDO::PARAM_STR);
+        $addCat->bindValue(':eyes', $eyes, PDO::PARAM_STR);
+        $addCat->bindValue(':pedigree', $pedigree, PDO::PARAM_STR);
+        $addCat->bindValue(':chip', $chip, PDO::PARAM_INT);
+        $addCat->bindValue(':breeder', $breeder, PDO::PARAM_STR);
+        $addCat->bindValue(':father', $father, PDO::PARAM_STR);
+        $addCat->bindValue(':mother', $mother, PDO::PARAM_STR);
+        $addCat->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 
-        // Exécution de la requête
-        if ($stmt->execute()) {
+        // Exécute la requête
+        if ($addCat->execute()) {
             echo "Chat ajouté avec succès.";
         } else {
-            // Récupère l'erreur SQL et l'affiche pour faciliter le débogage
-            $errorInfo = $stmt->errorInfo();
+            $errorInfo = $addCat->errorInfo();
             echo "Erreur lors de l'ajout du chat : " . $errorInfo[2];
         }
     } catch (PDOException $e) {
-        // Si une erreur se produit lors de l'exécution de la requête
         echo "Erreur SQL : " . $e->getMessage();
     }
 }

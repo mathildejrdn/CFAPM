@@ -57,7 +57,7 @@ if (isset($_SESSION['message'])) {
   </div>
     <header class="header">
         <div class="header-container">
-            <img src="../img/bengal.png" alt="Header Image" class="header-image">
+            <img src="../img/bengal.png" alt="Chat Bengal" class="header-image">
             <div class="header-content">
                 <h1>Cercle félin baie des anges</h1>
             </div>
@@ -66,7 +66,7 @@ if (isset($_SESSION['message'])) {
 
     <section class="news-section">
         <div class="container">
-            <img src="../img/chaton.jpg" alt="Image descriptive" class="image">
+            <img src="../img/chaton.jpg" alt="Chaton roux" class="image">
             <div class="text-content"><h1>Expositions à venir</h1>
                 <h2>Spéciale chatons</h2>
                 <p class="paragraph">Plongez dans une exposition féline dédiée aux petites boules de poils : races variées, conseils d’experts, et moments câlins inoubliables. Un rendez-vous incontournable pour tous les amoureux des chats ! 🐾
@@ -81,13 +81,13 @@ if (isset($_SESSION['message'])) {
 
     <section class="gallery-section"><h1>Expositions passées</h1>
         <div class="gallery-container">
-          <img src="../img/img1.jpg" alt="Image 1" class="gallery-image">
-          <img src="../img/img2.jpg" alt="Image 2" class="gallery-image">
-          <img src="../img/img3.jpg" alt="Image 3" class="gallery-image">
-          <img src="../img/img1.jpg" alt="Image 4" class="gallery-image">
-          <img src="../img/img2.jpg" alt="Image 5" class="gallery-image">
-          <img src="../img/img2.jpg" alt="Image 5" class="gallery-image">
-          <img src="../img/img2.jpg" alt="Image 5" class="gallery-image">
+          <img src="../img/img1.jpg" alt="Image d'illustration" class="gallery-image">
+          <img src="../img/img2.jpg" alt="Image d'illustration" class="gallery-image">
+          <img src="../img/img3.jpg" alt="Image d'illustration" class="gallery-image">
+          <img src="../img/img1.jpg" alt="Image d'illustration" class="gallery-image">
+          <img src="../img/img2.jpg" alt="Image d'illustration" class="gallery-image">
+          <img src="../img/img2.jpg" alt="Image d'illustration" class="gallery-image">
+          <img src="../img/img2.jpg" alt="Image d'illustration" class="gallery-image">
         </div>
       </section>
       
@@ -95,25 +95,25 @@ if (isset($_SESSION['message'])) {
       <section class="section-about"><h1>Notre équipe</h1>
         <div class="container-about">
             <div class="about-item">
-                <img src="../img/chat1.jpg" alt="Image 2 description" class="about-image">
+                <img src="../img/chat1.jpg" alt="Image d'illustration Nicole & son chat" class="about-image">
                 <h3>Mme Nicole Chaniel & nom du chat</h3><br>
                 <p class="about-text">
                 Présidente du club</p>
             </div>
             <div class="about-item">
-                <img src="../img/chat2.jpg" alt="Image 3 description" class="about-image">
+                <img src="../img/chat2.jpg" alt="Image d'illustration Karine & son chat" class="about-image">
                 <h3>Mme Karine Riahi & nom du chat</h3><br>
                 <p class="about-text">
                     Secrétaire générale du club</p>
             </div>
             <div class="about-item">
-                <img src="../img/chat3.jpg" alt="Image 1 description" class="about-image">
+                <img src="../img/chat3.jpg" alt="Image d'illustration Michel & son chat" class="about-image">
                 <h3>Mr Michel Pons & nom du chat</h3><br>
                 <p class="about-text">
                     Trésorier</p>
             </div>
             <div class="about-item">
-                <img src="../img/mitaine.jpg" alt="Image 3 description" class="about-image">
+                <img src="../img/mitaine.jpg" alt="Image d'illustration Mathilde & Mitaine" class="about-image">
                 <h3>Mlle Mathilde Jourden & Mitaine</h3><br>
                 <p class="about-text">
                     Développeuse web et assesseuse occasionnelle</p></p>

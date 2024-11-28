@@ -25,10 +25,10 @@ $user_id = $_SESSION['user']['user_id']; // Récupère l'ID de l'utilisateur con
 
 // Récupérer les chats de l'utilisateur connecté
 $query = "SELECT * FROM Cat WHERE user_id = :user_id";
-$stmt = $db->prepare($query);
-$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT); // Utilisation de l'ID utilisateur
-$stmt->execute();
-$chats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$catConnect = $db->prepare($query);
+$catConnect->bindValue(':user_id', $user_id, PDO::PARAM_INT); // Utilisation de l'ID utilisateur
+$catConnect->execute();
+$chats = $catConnect->fetchAll(PDO::FETCH_ASSOC);
 
 // Suppression d'un chat si la demande est effectuée
 if (isset($_GET['delete'])) {
@@ -36,9 +36,9 @@ if (isset($_GET['delete'])) {
     
     // Requête SQL pour supprimer le chat
     $deleteQuery = "DELETE FROM Cat WHERE cat_id = :cat_id";
-    $deleteStmt = $db->prepare($deleteQuery);
-    $deleteStmt->bindValue(':cat_id', $cat_id, PDO::PARAM_INT);
-    if ($deleteStmt->execute()) {
+    $delete = $db->prepare($deleteQuery);
+    $delete->bindValue(':cat_id', $cat_id, PDO::PARAM_INT);
+    if ($delete->execute()) {
         echo "Le chat a été supprimé avec succès.";
         header('Location: cats.php'); // Rediriger pour éviter une nouvelle soumission
         exit;

@@ -26,10 +26,10 @@ if (isset($_GET['cat_id'])) {
 
     // Récupérer les informations du chat depuis la base de données
     $query = "SELECT * FROM Cat WHERE cat_id = :cat_id";
-    $stmt = $db->prepare($query);
-    $stmt->bindValue(':cat_id', $cat_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $chat = $stmt->fetch(PDO::FETCH_ASSOC);
+    $Catbdd = $db->prepare($query);
+    $Catbdd->bindValue(':cat_id', $cat_id, PDO::PARAM_INT);
+    $Catbdd->execute();
+    $chat = $Catbdd->fetch(PDO::FETCH_ASSOC);
 
     // Vérifier si le chat appartient à l'utilisateur connecté
     if ((int)$chat['user_id'] !== (int)$_SESSION['user']['user_id']) {
@@ -61,22 +61,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
               eyes = :eyes, pedigree = :pedigree, chip = :chip, breeder = :breeder, father = :father, mother = :mother 
               WHERE cat_id = :cat_id";
     
-    $stmt = $db->prepare($query);
-    $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-    $stmt->bindValue(':birthdate', $birthdate, PDO::PARAM_STR);
-    $stmt->bindValue(':sex', $sex, PDO::PARAM_STR);
-    $stmt->bindValue(':breed', $breed, PDO::PARAM_STR);
-    $stmt->bindValue(':color', $color, PDO::PARAM_STR);
-    $stmt->bindValue(':eyes', $eyes, PDO::PARAM_STR);
-    $stmt->bindValue(':pedigree', $pedigree, PDO::PARAM_STR);
-    $stmt->bindValue(':chip', $chip, PDO::PARAM_INT);
-    $stmt->bindValue(':breeder', $breeder, PDO::PARAM_STR);
-    $stmt->bindValue(':father', $father, PDO::PARAM_STR);
-    $stmt->bindValue(':mother', $mother, PDO::PARAM_STR);
-    $stmt->bindValue(':cat_id', $cat_id, PDO::PARAM_INT);
+    $Catbdd = $db->prepare($query);
+    $Catbdd->bindValue(':name', $name, PDO::PARAM_STR);
+    $Catbdd->bindValue(':birthdate', $birthdate, PDO::PARAM_STR);
+    $Catbdd->bindValue(':sex', $sex, PDO::PARAM_STR);
+    $Catbdd->bindValue(':breed', $breed, PDO::PARAM_STR);
+    $Catbdd->bindValue(':color', $color, PDO::PARAM_STR);
+    $Catbdd->bindValue(':eyes', $eyes, PDO::PARAM_STR);
+    $Catbdd->bindValue(':pedigree', $pedigree, PDO::PARAM_STR);
+    $Catbdd->bindValue(':chip', $chip, PDO::PARAM_INT);
+    $Catbdd->bindValue(':breeder', $breeder, PDO::PARAM_STR);
+    $Catbdd->bindValue(':father', $father, PDO::PARAM_STR);
+    $Catbdd->bindValue(':mother', $mother, PDO::PARAM_STR);
+    $Catbdd->bindValue(':cat_id', $cat_id, PDO::PARAM_INT);
 
     // Exécuter la mise à jour
-    if ($stmt->execute()) {
+    if ($Catbdd->execute()) {
         // Redirection après mise à jour
         header('Location: cats.php'); 
         exit; // On termine l'exécution du script après la redirection
