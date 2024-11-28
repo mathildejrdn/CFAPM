@@ -1,6 +1,6 @@
-// Toggle navigation menu on mobile view
+// menu burger
 function toggleNavMenu() {
-  const navMenu = document.getElementById("myTopnav");
+  const navMenu = document.getElementById("myTopnav"); 
   
   if (navMenu.classList.contains("topnav")) {
     navMenu.classList.add("responsive");
@@ -9,7 +9,8 @@ function toggleNavMenu() {
   }
 }
 
-// Handle intersection observer for sections that should animate when in view
+
+// gestion des sections au scroll
 function observeSectionAnimation(sectionClass) {
   const section = document.querySelector(sectionClass);
   
@@ -17,25 +18,25 @@ function observeSectionAnimation(sectionClass) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          section.classList.add('active');
+          section.classList.add('active'); //déclanche le CSS avec l'écoute
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1 }); //10px
 
     observer.observe(section);
   }
 }
 
-// Smooth continuous scrolling for gallery container
+// Gallerie
 function startContinuousScroll() {
   const galleryContainer = document.querySelector('.gallery-container');
   
-  // Duplicate the first image and append it for seamless looping
+  // Duplication de la première image pour un loop
   const firstImage = galleryContainer.querySelector('img');
   const clonedImage = firstImage.cloneNode(true); 
   galleryContainer.appendChild(clonedImage);
 
-  let scrollSpeed = 1; // Adjust speed as needed
+  let scrollSpeed = 1; 
 
   function scrollGallery() {
     galleryContainer.scrollBy({
@@ -43,23 +44,23 @@ function startContinuousScroll() {
       behavior: 'smooth'
     });
 
-    // Reset scroll position when reaching the end of the container
+    // reset du scroll
     if (galleryContainer.scrollLeft >= galleryContainer.scrollWidth - galleryContainer.clientWidth) {
       galleryContainer.scrollLeft = 0;
     }
   }
 
-  // Continuously scroll every 30ms
+  // continuité de l'animation 30s d'intervale
   setInterval(scrollGallery, 30);
 }
 
-// Initialize all scripts once the DOM is fully loaded
+// Initialisation des script au chargement du DOM
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize section animations
+  // Animation des sections
   observeSectionAnimation('.news-section .container');
   observeSectionAnimation('.section-about .container-about');
   observeSectionAnimation('.history-section .container');
   
-  // Start the continuous scrolling of the gallery
+  // Début du scroll de gallerie
   startContinuousScroll();
 });

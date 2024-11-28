@@ -44,17 +44,13 @@ if (isset($_SESSION['message'])) {
             echo '<a href="login.php">Connexion</a> <a href="inscription.php">Inscription</a>';
         }
         ?>
-            <a href="#contact">Contact</a>
+        <a href="#contact">Contact</a>
     </div>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-    </a>
+    <a href="javascript:void(0);" class="icon" onclick="toggleNavMenu()">&#9776;</a> <!-- Ajout du symbole burger -->
 </div>
 
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-      <i class="fa fa-bars"></i>
-    </a>
-  </div>
+
+  
     <header class="header">
         <div class="header-container">
             <img src="../img/bengal.png" alt="Chat Bengal" class="header-image">
